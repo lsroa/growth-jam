@@ -10,6 +10,7 @@ dof_blur_far_transition = 1.47
 [sub_resource type="PlaneMesh" id=3]
 
 [node name="Resource" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90735e-06, 26.4775, -17.1163 )
 script = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]

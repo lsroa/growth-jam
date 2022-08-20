@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/building_2.glb-a4037ef7070e28458d6d49a90fdedbf1.scn"
+path="res://.import/main.glb-4871a2cb0cbd2da9a40fafe9ea4ef66a.scn"
 
 [deps]
 
-source_file="res://Assets/Buildings/oil/building_2.glb"
-dest_files=[ "res://.import/building_2.glb-a4037ef7070e28458d6d49a90fdedbf1.scn" ]
+source_file="res://Assets/Buildings/water/main.glb"
+dest_files=[ "res://.import/main.glb-4871a2cb0cbd2da9a40fafe9ea4ef66a.scn" ]
 
 [params]
 

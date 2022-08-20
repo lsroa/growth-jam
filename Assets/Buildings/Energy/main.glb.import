@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/small_energy2.glb-7e70617fa26effefd21da98175f60ee4.scn"
+path="res://.import/main.glb-9e5cf7e621130c8a2c1730ee6cdc7fb6.scn"
 
 [deps]
 
-source_file="res://Assets/Buildings/Energy/small_energy2.glb"
-dest_files=[ "res://.import/small_energy2.glb-7e70617fa26effefd21da98175f60ee4.scn" ]
+source_file="res://Assets/Buildings/energy/main.glb"
+dest_files=[ "res://.import/main.glb-9e5cf7e621130c8a2c1730ee6cdc7fb6.scn" ]
 
 [params]
 
