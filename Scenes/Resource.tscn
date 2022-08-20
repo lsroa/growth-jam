@@ -23,18 +23,23 @@ script = ExtResource( 2 )
 [node name="Building" type="MeshInstance" parent="."]
 transform = Transform( 0.401579, 0, 0, 0, 1, 0, 0, 0, 0.401579, 0.56275, 1.29999, -0.344015 )
 mesh = SubResource( 5 )
-skeleton = NodePath("../GUI")
+skeleton = NodePath("../GUI/Render")
 material/0 = null
 
-[node name="GUI" type="MeshInstance" parent="."]
+[node name="GUI" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7653, 0.366371 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Render" type="MeshInstance" parent="GUI"]
 mesh = SubResource( 3 )
+skeleton = NodePath("../..")
 material/0 = SubResource( 6 )
 
-[node name="Area" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7653, 0.366371 )
+[node name="Area" type="Area" parent="GUI"]
 
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
+[node name="CollisionShape" type="CollisionShape" parent="GUI/Area"]
 shape = SubResource( 1 )
 
-[connection signal="input_event" from="Area" to="." method="_on_Area_input_event"]
+[connection signal="input_event" from="GUI/Area" to="." method="_on_Area_input_event"]

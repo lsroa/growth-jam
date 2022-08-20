@@ -1,19 +1,24 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scenes/Spatial.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Resource.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Scripts/Main.gd" type="Script" id=2]
 [ext_resource path="res://src/Scripts/Camera.gd" type="Script" id=3]
 
+[sub_resource type="Environment" id=4]
+dof_blur_far_distance = 18.45
+dof_blur_far_transition = 1.47
+
 [sub_resource type="PlaneMesh" id=3]
 
-[node name="Spatial" type="Spatial"]
+[node name="Resource" type="Spatial"]
 script = ExtResource( 2 )
 
 [node name="SequenceUI" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 1, -1.40908, 0.0907857, 1.89414 )
+transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 1, -1.40908, 1.93538, 1.89414 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 10, 6, 10 )
+environment = SubResource( 4 )
 projection = 1
 size = 15.0
 script = ExtResource( 3 )
@@ -24,3 +29,7 @@ script = ExtResource( 3 )
 transform = Transform( 11.6823, 0, 0, 0, 11.6823, 0, 0, 0, 11.6823, 0, 0, 0 )
 mesh = SubResource( 3 )
 material/0 = null
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.795336, -0.483592, 0.365486, 0, 0.602943, 0.797784, -0.606169, -0.634506, 0.479543, 0, 6.8879, 0 )
+light_energy = 0.8
