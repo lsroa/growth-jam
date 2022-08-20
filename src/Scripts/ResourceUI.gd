@@ -6,7 +6,6 @@ var id = 0
 
 func _on_Area_input_event(_camera, event, _position, _normal, _shape_idx):
 	if event is InputEventMouseButton:
-		print("click from area")
 		emit_signal("click",id)
 
 func _ready():
