@@ -1,10 +1,20 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Images/icon.png" type="Texture" id=1]
 [ext_resource path="res://src/Scripts/ResourceUI.gd" type="Script" id=2]
 [ext_resource path="res://src/Shaders/flash.shader" type="Shader" id=3]
 
 [sub_resource type="CubeMesh" id=5]
+
+[sub_resource type="Shader" id=7]
+code = "shader_type spatial;
+
+void fragment(){
+	ALBEDO = ALBEDO;
+}"
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
 
 [sub_resource type="QuadMesh" id=3]
 
@@ -24,7 +34,7 @@ script = ExtResource( 2 )
 transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0.5, 1, -0.5 )
 mesh = SubResource( 5 )
 skeleton = NodePath("../GUI/Render")
-material/0 = null
+material/0 = SubResource( 8 )
 
 [node name="GUI" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0.2 )
