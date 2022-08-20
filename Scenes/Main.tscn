@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scenes/Resource.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Scripts/Main.gd" type="Script" id=2]
 [ext_resource path="res://src/Scripts/Camera.gd" type="Script" id=3]
 
@@ -12,9 +11,6 @@ dof_blur_far_transition = 1.47
 
 [node name="Resource" type="Spatial"]
 script = ExtResource( 2 )
-
-[node name="SequenceUI" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 1, -1.40908, 1.93538, 1.89414 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 10, 6, 10 )
