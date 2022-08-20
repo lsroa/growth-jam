@@ -11,9 +11,10 @@ dof_blur_far_transition = 1.47
 
 [node name="Resource" type="Spatial"]
 script = ExtResource( 2 )
+gap = 8
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 10, 6, 10 )
+transform = Transform( 0.707107, -0.353553, 0.612373, 0, 0.866026, 0.5, -0.707107, -0.353553, 0.612373, 20, 6, 5 )
 environment = SubResource( 4 )
 projection = 1
 size = 15.0
@@ -22,7 +23,7 @@ script = ExtResource( 3 )
 [node name="Tween" type="Tween" parent="Camera"]
 
 [node name="Floor" type="MeshInstance" parent="."]
-transform = Transform( 9, 0, 0, 0, 9, 0, 0, 0, 9, 0, 0, 0 )
+transform = Transform( 9, 0, 0, 0, 9, 0, 0, 0, 9, 9, 0, -9 )
 mesh = SubResource( 3 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]

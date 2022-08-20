@@ -39,7 +39,6 @@ material/0 = SubResource( 9 )
 
 [node name="GUI" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0.2 )
-visible = false
 __meta__ = {
 "_edit_group_": true
 }
@@ -53,3 +52,5 @@ material/0 = SubResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="GUI/Area"]
 shape = SubResource( 3 )
+
+[connection signal="input_event" from="GUI/Area" to="." method="_on_Area_input_event"]
