@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/Scripts/ResourceUI.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Images/icon.png" type="Texture" id=2]
+[ext_resource path="res://src/Shaders/flash.shader" type="Shader" id=3]
+
+[sub_resource type="CubeMesh" id=8]
+size = Vector3( 2, 1, 2 )
+
+[sub_resource type="Shader" id=7]
+code = "shader_type spatial;
+
+void fragment(){
+	ALBEDO = ALBEDO;
+}"
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 7 )
+
+[sub_resource type="QuadMesh" id=1]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 3 )
+shader_param/color = Color( 0.815686, 0.290196, 0.290196, 1 )
+shader_param/level = 0.521
+shader_param/texture_albedo = ExtResource( 2 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.411397, 0.411014, 0.0439405 )
+
+[node name="AdjacentBulding" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Building" type="MeshInstance" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0.5, 0 )
+mesh = SubResource( 8 )
+skeleton = NodePath("../GUI/Render")
+material/0 = SubResource( 9 )
+
+[node name="GUI" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0.2 )
+visible = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Render" type="MeshInstance" parent="GUI"]
+mesh = SubResource( 1 )
+skeleton = NodePath("")
+material/0 = SubResource( 2 )
+
+[node name="Area" type="Area" parent="GUI"]
+
+[node name="CollisionShape" type="CollisionShape" parent="GUI/Area"]
+shape = SubResource( 3 )

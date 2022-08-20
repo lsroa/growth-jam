@@ -2,7 +2,8 @@ extends Spatial
 var resources = {} 
 var input = {}
 export(int) var number_of_instances = 5
-var resource_types = ["energy","water"]
+export(int) var number_of_instances_adjacent_building = 4
+var resource_types = ["oil", "power", "water", "solar"]
 
 func _on_gui_Click(id,type):
 	print("id: " , id)
@@ -13,13 +14,46 @@ func _on_gui_Click(id,type):
 func generate_sequence(type):
 	for i in range(number_of_instances):
 		var resource = preload("res://Scenes/Resource.tscn").instance()
-		var initial_position = Vector3(randi() % 15, 0.0, randi() % 15)
+		var initial_position = Vector3(0, 0, 0)
 		resource.init(i,initial_position,type)
 		resource.connect("click",self,"_on_gui_Click")
-
 		add_child(resource)
 		resources[type].append(i)
-
+		for j in range(number_of_instances_adjacent_building):
+			var initial_adjacent_position = adjacent_coordinates(initial_position, j)
+			var adjacent_building = preload("res://Scenes/AdjacentBuilding.tscn").instance()
+			adjacent_building.init(i,initial_adjacent_position,type)
+			adjacent_building.connect("click",self,"_on_gui_Click")
+			add_child(adjacent_building)
+			
+func adjacent_coordinates(initial_position, j):
+	var initial_adjacent_position = Vector3(0,0,0)
+	if (j == 0):
+		initial_adjacent_position = Vector3(
+			initial_position.x + 2, 
+			initial_position.y, 
+			initial_position.z
+		)
+	elif(j == 1):
+		initial_adjacent_position = Vector3(
+			initial_position.x - 2, 
+			initial_position.y, 
+			initial_position.z 
+		)
+	elif(j == 2):
+		initial_adjacent_position = Vector3(
+			initial_position.x - 0.5, 
+			initial_position.y, 
+			initial_position.z - 2
+		)
+	else:
+		initial_adjacent_position = Vector3(
+			initial_position.x, 
+			initial_position.y, 
+			initial_position.z + 2
+		)
+	return initial_adjacent_position
+ 
 func _ready():
 	for type in resource_types:
 		resources[type] = []
