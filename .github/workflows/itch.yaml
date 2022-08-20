@@ -40,7 +40,7 @@ jobs:
           path: project/${{ env.EXPORT_NAME }}/build/web
 
       - name: Publish to itch.io
-        uses: josephbmanley/butler-publish-itchio-action@v1.0.2
+        uses: manleydev/butler-publish-itchio-action 
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
           CHANNEL: web
