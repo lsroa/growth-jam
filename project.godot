@@ -24,11 +24,6 @@ config/name="growth"
 run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://icon.png"
 
-[editor]
-
-version_control_autoload_on_startup=true
-version_control_plugin_name="GitAPI"
-
 [gdnative]
 
 singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
