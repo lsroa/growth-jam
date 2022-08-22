@@ -18,7 +18,7 @@ gap = 8
 script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="Pivot"]
-transform = Transform( 0.695555, -0.372244, 0.614522, 0.0311221, 0.870124, 0.491849, -0.717798, -0.322983, 0.616805, 15, 15, 15 )
+transform = Transform( 0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 15, 15, 15 )
 environment = SubResource( 4 )
 projection = 1
 current = true
