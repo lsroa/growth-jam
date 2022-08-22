@@ -32,7 +32,7 @@ func assign_adjacent_buiding(column, row, initial_position):
 	for adjancent_building_position in random_adjancent_building_positions:
 		var adjacent_coordinates = adjacent_coordinates(initial_position, adjancent_building_position)
 		var adjacent_building = preload("res://Scenes/AdjacentBuilding.tscn").instance()
-		adjacent_building.init("(%s,%s):%s" % [column, row,adjancent_building_position], adjacent_coordinates)
+		adjacent_building.init("(%s,%s): %s" % [column, row,adjancent_building_position], adjacent_coordinates)
 		adjacent_building.connect("click",self,"_on_gui_Click")
 		add_child(adjacent_building)
 
