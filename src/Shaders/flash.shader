@@ -1,7 +1,7 @@
 shader_type spatial;
 uniform sampler2D texture_albedo : hint_albedo;
 uniform vec4 color: hint_color;
-uniform float level:hint_range(0.0,1.0) = 1;
+uniform float level:hint_range(0.0,1.0) = 0;
 
 
 void fragment(){

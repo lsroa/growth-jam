@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Images/icon.png" type="Texture" id=1]
-[ext_resource path="res://src/Scripts/ResourceUI.gd" type="Script" id=2]
+[ext_resource path="res://src/Scripts/Resource.gd" type="Script" id=2]
 [ext_resource path="res://src/Shaders/flash.shader" type="Shader" id=3]
 [ext_resource path="res://src/Shaders/loading.shader" type="Shader" id=4]
 
@@ -32,7 +32,7 @@ skeleton = NodePath("../GUI/Render")
 material/0 = SubResource( 8 )
 
 [node name="GUI" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0.2 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 __meta__ = {
 "_edit_group_": true
 }
