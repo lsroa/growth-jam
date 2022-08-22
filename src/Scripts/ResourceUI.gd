@@ -10,7 +10,7 @@ func _on_Area_input_event(_camera, event, _position, _normal, _shape_idx):
 		emit_signal("click",_id)
 
 func _ready():
-	var camera = get_parent().get_node("Camera")
+	var camera = get_parent().get_node("Pivot/Camera")
 	gui = get_node("GUI/Render")
 	gui.rotation = camera.rotation
 
