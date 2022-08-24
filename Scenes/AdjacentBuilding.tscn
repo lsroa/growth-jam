@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/Scripts/Adjacent.gd" type="Script" id=1]
 [ext_resource path="res://src/Shaders/flash.shader" type="Shader" id=3]
+[ext_resource path="res://Assets/Buildings/Energy/building_1.glb" type="PackedScene" id=4]
 
 [sub_resource type="CubeMesh" id=8]
 size = Vector3( 2, 1, 2 )
@@ -27,8 +28,29 @@ skeleton = NodePath("")
 material/0 = SubResource( 9 )
 
 [node name="StaticBody" type="StaticBody" parent="Building"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00205482, -0.07533, 0.0347826 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Building/StaticBody"]
 shape = SubResource( 10 )
+
+[node name="GUI" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0.2 )
+visible = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Render" type="MeshInstance" parent="GUI"]
+mesh = SubResource( 1 )
+skeleton = NodePath("")
+material/0 = SubResource( 2 )
+
+[node name="Area" type="Area" parent="GUI"]
+
+[node name="CollisionShape" type="CollisionShape" parent="GUI/Area"]
+shape = SubResource( 3 )
+
+[node name="building_1" parent="." instance=ExtResource( 4 )]
+visible = false
 
 [connection signal="input_event" from="Building/StaticBody" to="." method="_on_StaticBody_input_event"]
