@@ -32,4 +32,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00205482, -0.07533, 0.03478
 [node name="CollisionShape" type="CollisionShape" parent="Building/StaticBody"]
 shape = SubResource( 10 )
 
+[connection signal="click" from="." to="." method="_on_AdjacentBulding_click"]
 [connection signal="input_event" from="Building/StaticBody" to="." method="_on_StaticBody_input_event"]

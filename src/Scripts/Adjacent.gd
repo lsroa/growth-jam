@@ -17,22 +17,20 @@ func init(id, _initial_position):
 	self.translation = _initial_position
 
 func _on_StaticBody_input_event(_camera, event, _position, _normal, _shape_idx):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_MASK_LEFT:
-			flash()
-			emit_signal("click",_id)
-			
+	if event is InputEventMouseButton and event.button_index == BUTTON_MASK_LEFT and event.pressed:
+		flash()
+		emit_signal("click",_id)
+
 func flash():
 	var material = building.get_active_material(0)
 	fade_material.interpolate_property(
-		material, 
-		"shader_param/level", 
-		1.0, 
-		0.0, 
+		material,
+		"shader_param/level",
+		1.0,
+		0.0,
 		0.5,
-		Tween.TRANS_LINEAR, 
+		Tween.TRANS_LINEAR,
 		Tween.EASE_IN
 	)
 	fade_material.start()
-	
-	
+
