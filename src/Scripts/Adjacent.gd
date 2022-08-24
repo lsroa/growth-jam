@@ -8,9 +8,6 @@ var fade_material
 var building
 
 func _ready():
-	var camera = get_parent().get_node("Pivot/Camera")
-	gui = get_node("GUI/Render")
-	print(camera)
 #	gui.rotation = camera.rotation
 	building = get_node("Building")
 	fade_material = get_node("Fade")

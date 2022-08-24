@@ -6,17 +6,17 @@
 [ext_resource path="res://src/Scripts/MeshInstancer.gd" type="Script" id=4]
 [ext_resource path="res://src/Shaders/loading.shader" type="Shader" id=5]
 
+[sub_resource type="ShaderMaterial" id=20]
+shader = ExtResource( 5 )
+shader_param/LOAD_COLOR = Color( 0, 1, 0, 1 )
+
+[sub_resource type="PrismMesh" id=11]
+material = SubResource( 20 )
+
 [sub_resource type="ShaderMaterial" id=18]
 
 [sub_resource type="CylinderMesh" id=10]
 material = SubResource( 18 )
-
-[sub_resource type="ShaderMaterial" id=16]
-shader = ExtResource( 5 )
-shader_param/LOAD_COLOR = null
-
-[sub_resource type="PrismMesh" id=11]
-material = SubResource( 16 )
 
 [sub_resource type="ShaderMaterial" id=17]
 shader = ExtResource( 5 )
@@ -25,12 +25,12 @@ shader_param/LOAD_COLOR = null
 [sub_resource type="CubeMesh" id=12]
 material = SubResource( 17 )
 
-[sub_resource type="ShaderMaterial" id=14]
+[sub_resource type="ShaderMaterial" id=19]
 shader = ExtResource( 5 )
-shader_param/LOAD_COLOR = null
+shader_param/LOAD_COLOR = Color( 0, 1, 0, 1 )
 
 [sub_resource type="SphereMesh" id=13]
-material = SubResource( 14 )
+material = SubResource( 19 )
 
 [sub_resource type="QuadMesh" id=3]
 
@@ -48,8 +48,7 @@ script = ExtResource( 2 )
 
 [node name="Building" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-mesh = SubResource( 10 )
-material/0 = null
+mesh = SubResource( 11 )
 script = ExtResource( 4 )
 mesh_pools = [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ]
 shader = ExtResource( 5 )

@@ -9,14 +9,6 @@ export(int) var main_building_gap = 8
 
 var score = 0
 var resource_types = ["oil", "power", "water", "solar"]
-var adjancent_building_positions = ["left", "right", "up", "bottom"]
-
-func _on_gui_Click(id):
-	print("id: " , id)
-	score+=1
-	print("score: " , score)
-#	input[type].append(id)
-	print(input)
 
 func main_building_coordidate(column, row):
 	var resource = preload("res://Scenes/Resource.tscn").instance()
