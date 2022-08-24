@@ -3,7 +3,7 @@
 [ext_resource path="res://Assets/Images/icon.png" type="Texture" id=1]
 [ext_resource path="res://src/Scripts/Resource.gd" type="Script" id=2]
 [ext_resource path="res://src/Shaders/flash.shader" type="Shader" id=3]
-[ext_resource path="res://Scenes/Mesh_Instancer.gd" type="Script" id=4]
+[ext_resource path="res://src/Scripts/MeshInstancer.gd" type="Script" id=4]
 [ext_resource path="res://src/Shaders/loading.shader" type="Shader" id=5]
 
 [sub_resource type="ShaderMaterial" id=18]
