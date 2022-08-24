@@ -1,4 +1,5 @@
 extends Spatial
+tool
 
 signal click(id)
 var gui
@@ -7,18 +8,12 @@ var fade_material
 var building
 
 func _ready():
-	var camera = get_parent().get_node("Pivot/Camera")
-	gui = get_node("GUI/Render")
-	gui.rotation = camera.rotation
 	building = get_node("Building")
 	fade_material = get_node("Fade")
 
 func init(id, _initial_position):
 	_id = id
 	self.translation = _initial_position
-
-func _on_Area_input_event(_camera, _event, _position, _normal, _shape_idx):
-	pass
 
 func _on_StaticBody_input_event(_camera, event, _position, _normal, _shape_idx):
 	if event is InputEventMouseButton:

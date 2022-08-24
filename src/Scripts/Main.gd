@@ -1,4 +1,6 @@
 extends Spatial
+tool
+
 var resources = {} 
 var input = {}
 #TODO: 
@@ -68,6 +70,7 @@ func adjacent_coordinates(initial_position, adjancent_building_position):
 	return initial_adjacent_position
  
 func _ready():
+	randomize()
 	for column in range(3):
 		for row in range(3):
 			main_building_coordidate(column, row)

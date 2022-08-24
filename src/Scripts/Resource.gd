@@ -1,4 +1,5 @@
 extends Spatial
+tool
 
 signal click(id)
 var gui
@@ -6,9 +7,10 @@ var _id = 0
 
 
 func _ready():
-	var camera = get_parent().get_node("Pivot/Camera")
-	gui = get_node("GUI/Render")
-	gui.rotation = camera.rotation
+	if not Engine.editor_hint:
+		var camera = get_parent().get_node("Pivot/Camera")
+		gui = get_node("GUI/Render")
+		gui.rotation = camera.rotation
 	
 
 func init(id, _initial_position):
