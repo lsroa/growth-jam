@@ -1,15 +1,36 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/Images/icon.png" type="Texture" id=1]
 [ext_resource path="res://src/Scripts/Resource.gd" type="Script" id=2]
 [ext_resource path="res://src/Shaders/flash.shader" type="Shader" id=3]
-[ext_resource path="res://src/Shaders/loading.shader" type="Shader" id=4]
+[ext_resource path="res://Scenes/Mesh_Instancer.gd" type="Script" id=4]
+[ext_resource path="res://src/Shaders/loading.shader" type="Shader" id=5]
 
-[sub_resource type="CubeMesh" id=5]
+[sub_resource type="ShaderMaterial" id=18]
 
-[sub_resource type="ShaderMaterial" id=8]
-shader = ExtResource( 4 )
-shader_param/LOAD_COLOR = Color( 0.639216, 0.976471, 0.337255, 1 )
+[sub_resource type="CylinderMesh" id=10]
+material = SubResource( 18 )
+
+[sub_resource type="ShaderMaterial" id=16]
+shader = ExtResource( 5 )
+shader_param/LOAD_COLOR = null
+
+[sub_resource type="PrismMesh" id=11]
+material = SubResource( 16 )
+
+[sub_resource type="ShaderMaterial" id=17]
+shader = ExtResource( 5 )
+shader_param/LOAD_COLOR = null
+
+[sub_resource type="CubeMesh" id=12]
+material = SubResource( 17 )
+
+[sub_resource type="ShaderMaterial" id=14]
+shader = ExtResource( 5 )
+shader_param/LOAD_COLOR = null
+
+[sub_resource type="SphereMesh" id=13]
+material = SubResource( 14 )
 
 [sub_resource type="QuadMesh" id=3]
 
@@ -19,17 +40,19 @@ shader_param/color = Color( 0.815686, 0.290196, 0.290196, 1 )
 shader_param/level = 0.521
 shader_param/texture_albedo = ExtResource( 1 )
 
-[sub_resource type="BoxShape" id=1]
+[sub_resource type="BoxShape" id=9]
 extents = Vector3( 0.411397, 0.411014, 0.0439405 )
 
 [node name="Resource" type="Spatial"]
 script = ExtResource( 2 )
 
 [node name="Building" type="MeshInstance" parent="."]
-transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, -0.5, 1, -0.5 )
-mesh = SubResource( 5 )
-skeleton = NodePath("../GUI/Render")
-material/0 = SubResource( 8 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+mesh = SubResource( 10 )
+material/0 = null
+script = ExtResource( 4 )
+mesh_pools = [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ]
+shader = ExtResource( 5 )
 
 [node name="GUI" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
@@ -45,6 +68,6 @@ material/0 = SubResource( 6 )
 [node name="Area" type="Area" parent="GUI"]
 
 [node name="CollisionShape" type="CollisionShape" parent="GUI/Area"]
-shape = SubResource( 1 )
+shape = SubResource( 9 )
 
 [connection signal="input_event" from="GUI/Area" to="." method="_on_Area_input_event"]
