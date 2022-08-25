@@ -26,8 +26,6 @@ jobs:
 
       - name: Web Build
         run: |
-          mkdir project
-          cd project
           mkdir ./$EXPORT_NAME
           rsync -Rr . ./$EXPORT_NAME
           cd $EXPORT_NAME
@@ -38,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: web
-          path: project/${{ env.EXPORT_NAME }}/build/web
+          path: ./${{ env.EXPORT_NAME }}/build/web
 
       - name: Publish to itch.io
         uses: josephbmanley/butler-publish-itchio-action@master
@@ -47,5 +45,5 @@ jobs:
           CHANNEL: web
           ITCH_GAME: growfield
           ITCH_USER: vheztial
-          PACKAGE: project/${{ env.EXPORT_NAME }}/build/web
+          PACKAGE: ./${{ env.EXPORT_NAME }}/build/web
 
