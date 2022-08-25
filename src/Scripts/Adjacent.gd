@@ -11,6 +11,8 @@ func _ready():
 #	gui.rotation = camera.rotation
 	building = get_node("Building")
 	fade_material = get_node("Fade")
+	var label = get_node("Spatial/Viewport/Label")
+	label.text = "(%s, %s, %s)" % [self.translation.x, self.translation.y, self.translation.z]
 
 func init(id, _initial_position):
 	_id = id

@@ -12,7 +12,7 @@ dof_blur_far_transition = 1.47
 
 [node name="Resource" type="Spatial"]
 script = ExtResource( 2 )
-main_building_gap = 7
+main_building_gap = 8
 
 [node name="Pivot" type="Spatial" parent="."]
 script = ExtResource( 1 )
