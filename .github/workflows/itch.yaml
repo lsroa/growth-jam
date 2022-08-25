@@ -26,6 +26,8 @@ jobs:
 
       - name: Web Build
         run: |
+          mkdir project
+          cd project
           mkdir ./$EXPORT_NAME
           rsync -Rr . ./$EXPORT_NAME
           cd $EXPORT_NAME
