@@ -1,0 +1,31 @@
+name: test 
+
+on:
+  pull_request:
+    branches: 
+      - main
+jobs:
+  format:
+    name: Format GDScript
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2 
+        with: 
+            python-version: 3.8
+
+      - name: Install GDScript toolkit
+        run: pip3 install 'gdtoolkit==3.*'
+
+      - name: Run GDFormat
+        run: gdformat ./
+
+      #TODO: Uncomment after lint fixes
+      # - name: Run GDLint
+      #   run: gdlint ./
+
+
