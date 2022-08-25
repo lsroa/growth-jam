@@ -8,9 +8,11 @@ var fade_material
 var building
 
 func _ready():
-#	gui.rotation = camera.rotation
 	building = get_node("Building")
 	fade_material = get_node("Fade")
+	label_position_gui()
+
+func label_position_gui():
 	var label = get_node("Spatial/Viewport/Label")
 	label.text = "(%s, %s, %s)" % [self.translation.x, self.translation.y, self.translation.z]
 

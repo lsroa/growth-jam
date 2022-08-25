@@ -30,10 +30,12 @@ func _ready():
 		var camera = get_parent().get_node("Pivot/Camera")
 		gui = get_node("GUI/Render")
 		gui.rotation = camera.rotation
+		label_position_gui()
+
+func label_position_gui():
 	var label = get_node("Spatial/Viewport/Label")
 	label.text = "(%s, %s, %s)" % [self.translation.x, self.translation.y, self.translation.z]
 	assign_adjacent_buiding()
-
 
 func assign_adjacent_buiding():
 	var random_number = rand_range(0, adjancent_building_positions.size())
