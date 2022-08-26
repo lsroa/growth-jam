@@ -10,26 +10,26 @@
 [sub_resource type="ViewportTexture" id=21]
 viewport_path = NodePath("Spatial/Viewport")
 
-[sub_resource type="ShaderMaterial" id=30]
-shader = ExtResource( 5 )
-shader_param/LOAD_COLOR = Color( 0, 1, 0, 1 )
-
-[sub_resource type="PrismMesh" id=11]
-material = SubResource( 30 )
-
-[sub_resource type="ShaderMaterial" id=29]
-shader = ExtResource( 5 )
-shader_param/LOAD_COLOR = Color( 0, 1, 0, 1 )
-
-[sub_resource type="CylinderMesh" id=10]
-material = SubResource( 29 )
-
-[sub_resource type="ShaderMaterial" id=28]
+[sub_resource type="ShaderMaterial" id=22]
 shader = ExtResource( 5 )
 shader_param/LOAD_COLOR = Color( 0, 1, 0, 1 )
 
 [sub_resource type="CubeMesh" id=12]
-material = SubResource( 28 )
+material = SubResource( 22 )
+
+[sub_resource type="ShaderMaterial" id=23]
+shader = ExtResource( 5 )
+shader_param/LOAD_COLOR = Color( 0, 1, 0, 1 )
+
+[sub_resource type="CylinderMesh" id=10]
+material = SubResource( 23 )
+
+[sub_resource type="ShaderMaterial" id=24]
+shader = ExtResource( 5 )
+shader_param/LOAD_COLOR = Color( 0, 1, 0, 1 )
+
+[sub_resource type="PrismMesh" id=11]
+material = SubResource( 24 )
 
 [sub_resource type="ShaderMaterial" id=25]
 shader = ExtResource( 5 )
@@ -79,7 +79,7 @@ texture = SubResource( 21 )
 
 [node name="Building" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-mesh = SubResource( 11 )
+mesh = SubResource( 12 )
 script = ExtResource( 4 )
 mesh_pools = [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ]
 shader = ExtResource( 5 )

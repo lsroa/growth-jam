@@ -44,7 +44,8 @@ func generate_sequence():
 
 	for _i in range(0, random_len):
 		var random_index = rand_range(0,list_adjancent_building_positions.size())
-		current_sequence.append(list_adjancent_building_positions[random_index])
+		if not Engine.editor_hint:
+			current_sequence.append(list_adjancent_building_positions[random_index])
 
 
 func label_position_gui():
