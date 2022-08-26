@@ -9,7 +9,7 @@ var adjancent_building_positions = ["left", "right", "up", "bottom"]
 
 var instance_adjancent_building_positions = []
 
-enum sequence_status { active, finish }
+enum sequence_status { active, done }
 var current_sequence = []
 
 #TODO: pass this variable to a global scope
@@ -32,8 +32,8 @@ func validate_player_sequence(adjancent_building_position_clicked):
 	var current_value_sequence = current_sequence.pop_front()
 	if current_value_sequence == adjancent_building_position_clicked:
 		#TODO: add score logic.
-		print("player_sequence: ", current_value_sequence)
-		print("player_sequence: ", current_sequence)
+		print("current_value_sequence: ", current_value_sequence)
+		print("current_sequence: ", current_sequence)
 	else:
 		generate_sequence()
 
@@ -42,7 +42,6 @@ func generate_sequence():
 	var max_sequence_number = 5
 	var random_len = rand_range(0, max_sequence_number)
 
-	# _i is to avoid the non-used variable warning
 	for _i in range(0, random_len):
 		var random_index = rand_range(0,instance_adjancent_building_positions.size())
 		current_sequence.append(instance_adjancent_building_positions[random_index])
