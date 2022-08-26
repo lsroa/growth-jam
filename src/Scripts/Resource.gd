@@ -7,11 +7,10 @@ var _id = 0
 export(PackedScene) var adjacent_building
 var adjancent_building_positions = ["left", "right", "up", "bottom"]
 
-var instance_adjancent_building_positions = ["left", "up"]
+var instance_adjancent_building_positions = []
 
 enum sequence_status { active, finish }
 var current_sequence = []
-var player_sequence = "left"
 
 #TODO: pass this variable to a global scope
 var score = 0
@@ -25,17 +24,18 @@ func _ready():
 
 	generate_sequence()
 
-func _on_gui_Click(adjancent_building_position):
-#	score+=1
-	validate_player_sequence(adjancent_building_position)
+func _on_gui_Click(adjancent_building_position_clicked):
+	validate_player_sequence(adjancent_building_position_clicked)
 
 
-func validate_player_sequence(adjancent_building_position):
+func validate_player_sequence(adjancent_building_position_clicked):
 	var current_value_sequence = current_sequence.pop_front()
-	if current_value_sequence == adjancent_building_position:
-		#TODO: add an emit from adjacent to resource with its position.
+	if current_value_sequence == adjancent_building_position_clicked:
+		#TODO: add score logic.
 		print("player_sequence: ", current_value_sequence)
 		print("player_sequence: ", current_sequence)
+	else:
+		generate_sequence()
 
 
 func generate_sequence():
@@ -68,7 +68,8 @@ func assign_adjacent_buiding():
 		new_adjacent_building.init("%s" % [adjancent_building_position], adjacent_coordinates)
 		new_adjacent_building.connect("click", self, "_on_gui_Click")
 		add_child(new_adjacent_building)
-		instance_adjancent_building_positions.append(new_adjacent_building)
+
+		instance_adjancent_building_positions.append(adjancent_building_position)
 
 
 func adjacent_coordinates(adjancent_building_position):
