@@ -7,7 +7,7 @@ var _id = 0
 export(PackedScene) var adjacent_building
 var adjancent_building_positions = ["left", "right", "up", "bottom"]
 
-var instance_adjancent_building_positions = []
+var list_adjancent_building_positions = []
 
 enum sequence_status { active, done }
 var current_sequence = []
@@ -43,8 +43,8 @@ func generate_sequence():
 	var random_len = rand_range(0, max_sequence_number)
 
 	for _i in range(0, random_len):
-		var random_index = rand_range(0,instance_adjancent_building_positions.size())
-		current_sequence.append(instance_adjancent_building_positions[random_index])
+		var random_index = rand_range(0,list_adjancent_building_positions.size())
+		current_sequence.append(list_adjancent_building_positions[random_index])
 
 
 func label_position_gui():
@@ -68,7 +68,7 @@ func assign_adjacent_buiding():
 		new_adjacent_building.connect("click", self, "_on_gui_Click")
 		add_child(new_adjacent_building)
 
-		instance_adjancent_building_positions.append(adjancent_building_position)
+		list_adjancent_building_positions.append(adjancent_building_position)
 
 
 func adjacent_coordinates(adjancent_building_position):
