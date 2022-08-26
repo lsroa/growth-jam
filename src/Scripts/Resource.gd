@@ -7,25 +7,14 @@ var _id = 0
 export(PackedScene) var adjacent_building
 var adjancent_building_positions = ["left", "right", "up", "bottom"]
 
+var instance_adjancent_building_positions = ["left", "up"]
+
 enum sequence_status { active, finish }
-var current_sequence = ["left", "left", "left", "right"]
+var current_sequence = []
 var player_sequence = "left"
 
 #TODO: pass this variable to a global scope
 var score = 0
-
-
-func _on_gui_Click(adjancent_building_position):
-#	score+=1
-	var current_value_sequence = current_sequence.pop_front()
-	if current_value_sequence == adjancent_building_position:
-		print("player_sequence: ", current_value_sequence)
-		print("player_sequence: ", current_sequence)
-
-
-func validate_player_sequence():
-	pass
-
 
 func _ready():
 	if not Engine.editor_hint:
@@ -33,6 +22,30 @@ func _ready():
 		gui = get_node("GUI/Render")
 		gui.rotation = camera.rotation
 		label_position_gui()
+
+	generate_sequence()
+
+func _on_gui_Click(adjancent_building_position):
+#	score+=1
+	validate_player_sequence(adjancent_building_position)
+
+
+func validate_player_sequence(adjancent_building_position):
+	var current_value_sequence = current_sequence.pop_front()
+	if current_value_sequence == adjancent_building_position:
+		#TODO: add an emit from adjacent to resource with its position.
+		print("player_sequence: ", current_value_sequence)
+		print("player_sequence: ", current_sequence)
+
+
+func generate_sequence():
+	var max_sequence_number = 5
+	var random_len = rand_range(0, max_sequence_number)
+
+	# _i is to avoid the non-used variable warning
+	for _i in range(0, random_len):
+		var random_index = rand_range(0,instance_adjancent_building_positions.size())
+		current_sequence.append(instance_adjancent_building_positions[random_index])
 
 
 func label_position_gui():
@@ -55,6 +68,7 @@ func assign_adjacent_buiding():
 		new_adjacent_building.init("%s" % [adjancent_building_position], adjacent_coordinates)
 		new_adjacent_building.connect("click", self, "_on_gui_Click")
 		add_child(new_adjacent_building)
+		instance_adjancent_building_positions.append(new_adjacent_building)
 
 
 func adjacent_coordinates(adjancent_building_position):
