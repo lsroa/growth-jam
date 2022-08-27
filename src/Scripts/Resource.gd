@@ -7,9 +7,9 @@ var _id = 0
 export(PackedScene) var adjacent_building
 var adjancent_building_positions = ["left", "right", "up", "bottom"]
 
-var list_adjancent_building_positions = []
+var dict_adjancent_building_positions = {}
 
-enum sequence_status { active, done }
+var is_playing_sequence = false
 var current_sequence = []
 
 #TODO: pass this variable to a global scope
@@ -24,15 +24,20 @@ func _ready():
 
 	generate_sequence()
 
-func _on_gui_Click(adjancent_building_position_clicked):
-	validate_player_sequence(adjancent_building_position_clicked)
+func _on_adjacent_Click(adjancent_building_position_clicked):
+	if not is_playing_sequence:
+		validate_player_sequence(adjancent_building_position_clicked)
+
+func _on_cooldown_Timeout():
+	for key in dict_adjancent_building_positions.keys():
+		dict_adjancent_building_positions[key].flash()
 
 
 func validate_player_sequence(adjancent_building_position_clicked):
 	var current_value_sequence = current_sequence.pop_front()
 	if current_value_sequence == adjancent_building_position_clicked:
 		#TODO: add score logic.
-		print("current_value_sequence: ", current_value_sequence)
+		print("player_input: ", current_value_sequence)
 		print("current_sequence: ", current_sequence)
 	else:
 		generate_sequence()
@@ -41,16 +46,15 @@ func validate_player_sequence(adjancent_building_position_clicked):
 func generate_sequence():
 	var max_sequence_number = 5
 	var random_len = rand_range(0, max_sequence_number)
-
 	for _i in range(0, random_len):
-		var random_index = rand_range(0,list_adjancent_building_positions.size())
+		var random_index = rand_range(0,dict_adjancent_building_positions.keys().size())
 		if not Engine.editor_hint:
-			current_sequence.append(list_adjancent_building_positions[random_index])
+			current_sequence.append(dict_adjancent_building_positions.keys()[random_index])
 
 
 func label_position_gui():
 	var label = get_node("Spatial/Viewport/Label")
-	label.text = "(%s, %s, %s)" % [self.translation.x, self.translation.y, self.translation.z]
+	label.text = "%s: (%s, %s, %s)" % [_id, self.translation.x, self.translation.y, self.translation.z]
 	assign_adjacent_buiding()
 
 
@@ -66,10 +70,9 @@ func assign_adjacent_buiding():
 		var new_adjacent_building = adjacent_building.instance()
 
 		new_adjacent_building.init("%s" % [adjancent_building_position], adjacent_coordinates)
-		new_adjacent_building.connect("click", self, "_on_gui_Click")
+		new_adjacent_building.connect("click", self, "_on_adjacent_Click")
 		add_child(new_adjacent_building)
-
-		list_adjancent_building_positions.append(adjancent_building_position)
+		dict_adjancent_building_positions[adjancent_building_position] = new_adjacent_building
 
 
 func adjacent_coordinates(adjancent_building_position):

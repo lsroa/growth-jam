@@ -14,7 +14,7 @@ viewport_path = NodePath("Spatial/Viewport")
 shader = ExtResource( 5 )
 shader_param/LOAD_COLOR = Color( 0, 1, 0, 1 )
 
-[sub_resource type="CubeMesh" id=12]
+[sub_resource type="SphereMesh" id=13]
 material = SubResource( 22 )
 
 [sub_resource type="ShaderMaterial" id=23]
@@ -35,7 +35,7 @@ material = SubResource( 24 )
 shader = ExtResource( 5 )
 shader_param/LOAD_COLOR = Color( 0, 1, 0, 1 )
 
-[sub_resource type="SphereMesh" id=13]
+[sub_resource type="CubeMesh" id=12]
 material = SubResource( 25 )
 
 [sub_resource type="QuadMesh" id=3]
@@ -52,6 +52,8 @@ extents = Vector3( 0.411397, 0.411014, 0.0439405 )
 [node name="Resource" type="Spatial"]
 script = ExtResource( 2 )
 adjacent_building = ExtResource( 6 )
+
+[node name="Timer" type="Timer" parent="."]
 
 [node name="Spatial" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.39752, 0 )
@@ -79,7 +81,7 @@ texture = SubResource( 21 )
 
 [node name="Building" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-mesh = SubResource( 12 )
+mesh = SubResource( 13 )
 script = ExtResource( 4 )
 mesh_pools = [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ]
 shader = ExtResource( 5 )
@@ -100,4 +102,5 @@ material/0 = SubResource( 6 )
 [node name="CollisionShape" type="CollisionShape" parent="GUI/Area"]
 shape = SubResource( 9 )
 
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="input_event" from="GUI/Area" to="." method="_on_Area_input_event"]
