@@ -11,6 +11,7 @@ var dict_adjancent_building_positions = {}
 
 var is_playing_sequence = false
 var current_sequence = []
+onready var timer = get_node("Timer")
 
 #TODO: pass this variable to a global scope
 var score = 0
@@ -22,15 +23,20 @@ func _ready():
 		gui.rotation = camera.rotation
 		label_position_gui()
 
+	generate_adjacent_buiding()
 	generate_sequence()
+	timer.start(randi() % 9)
+	
 
 func _on_adjacent_Click(adjancent_building_position_clicked):
 	if not is_playing_sequence:
 		validate_player_sequence(adjancent_building_position_clicked)
 
-func _on_cooldown_Timeout():
+func _on_Timer_timeout():
+	var i = 1
 	for key in dict_adjancent_building_positions.keys():
-		dict_adjancent_building_positions[key].flash()
+		dict_adjancent_building_positions[key].timer.start(i)
+		i = i + 1
 
 
 func validate_player_sequence(adjancent_building_position_clicked):
@@ -48,17 +54,15 @@ func generate_sequence():
 	var random_len = rand_range(0, max_sequence_number)
 	for _i in range(0, random_len):
 		var random_index = rand_range(0,dict_adjancent_building_positions.keys().size())
-		if not Engine.editor_hint:
-			current_sequence.append(dict_adjancent_building_positions.keys()[random_index])
+		current_sequence.append(dict_adjancent_building_positions.keys()[random_index])
 
 
 func label_position_gui():
 	var label = get_node("Spatial/Viewport/Label")
 	label.text = "%s: (%s, %s, %s)" % [_id, self.translation.x, self.translation.y, self.translation.z]
-	assign_adjacent_buiding()
 
 
-func assign_adjacent_buiding():
+func generate_adjacent_buiding():
 	var random_number = rand_range(0, adjancent_building_positions.size())
 	# TODO: This random rule needs to be improved
 	var random_adjancent_building_positions = adjancent_building_positions.slice(

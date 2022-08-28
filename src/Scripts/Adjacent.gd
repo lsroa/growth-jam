@@ -6,7 +6,7 @@ var gui
 var _id = 0
 var fade_material
 var building
-
+onready var timer = get_node("Timer")
 
 func _ready():
 	building = get_node("Building")
@@ -36,3 +36,7 @@ func flash():
 		material, "shader_param/level", 1.0, 0.0, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN
 	)
 	fade_material.start()
+
+
+func _on_Timer_timeout():
+	flash()
