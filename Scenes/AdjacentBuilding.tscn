@@ -26,6 +26,7 @@ one_shot = true
 
 [node name="Spatial" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.58946, 0 )
+visible = false
 
 [node name="Viewport" type="Viewport" parent="Spatial"]
 size = Vector2( 152, 40 )

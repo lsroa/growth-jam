@@ -12,7 +12,7 @@ shader = ExtResource( 5 )
 shader_param/level = 1.01
 shader_param/LOAD_COLOR = Color( 0, 1, 0, 1 )
 
-[sub_resource type="CubeMesh" id=35]
+[sub_resource type="SphereMesh" id=35]
 resource_local_to_scene = true
 material = SubResource( 34 )
 
@@ -100,7 +100,7 @@ script = ExtResource( 2 )
 adjacent_building = ExtResource( 6 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 7.0
+wait_time = 4.0
 one_shot = true
 
 [node name="Building" type="MeshInstance" parent="."]
@@ -121,6 +121,7 @@ size = Vector2( 152, 50 )
 transparent_bg = true
 
 [node name="Time" type="Label" parent="Spatial/Viewport"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 10 )
@@ -166,5 +167,5 @@ material/0 = SubResource( 6 )
 [node name="CollisionShape" type="CollisionShape" parent="GUI/Area"]
 shape = SubResource( 9 )
 
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_Cooldown_timeout"]
 [connection signal="input_event" from="GUI/Area" to="." method="_on_Area_input_event"]

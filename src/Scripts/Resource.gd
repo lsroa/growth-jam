@@ -3,7 +3,7 @@ tool
 
 var gui
 var _id = 0
-onready var cooldown = randi() % 9 + 1.0
+onready var cooldown = randi() % 9 + 3.0
 
 export(PackedScene) var adjacent_building
 var adjancent_building_positions = ["left", "right", "up", "bottom"]
@@ -23,11 +23,9 @@ func _ready():
 		var camera = get_parent().get_node("Pivot/Camera")
 		gui = get_node("GUI/Render")
 		gui.rotation = camera.rotation
-	label_position_gui()
 
 	generate_adjacent_buiding()
 	generate_sequence()
-	print("cooldown of %s: %s" % [_id,cooldown])
 	timer.start(cooldown)
 	get_node("Building").init(cooldown)
 	
@@ -36,7 +34,7 @@ func _on_adjacent_Click(adjancent_building_position_clicked):
 	if not is_playing_sequence:
 		validate_player_sequence(adjancent_building_position_clicked)
 
-func _on_Timer_timeout():
+func _on_Cooldown_timeout():
 	var i = 0.5
 	for key in dict_adjancent_building_positions.keys():
 		dict_adjancent_building_positions[key].timer.start(i)
@@ -45,13 +43,21 @@ func _on_Timer_timeout():
 
 func validate_player_sequence(adjancent_building_position_clicked):
 	var current_value_sequence = current_sequence.pop_front()
+	print("player_input: ", current_value_sequence)
+	print("sequence of %s: " % [_id], current_sequence)
+	
 	if current_value_sequence == adjancent_building_position_clicked:
 		#TODO: add score logic.
-		print("player_input: ", current_value_sequence)
-		print("current_sequence: ", current_sequence)
+		print("point")
 	else:
-		generate_sequence()
+		failed()
+		timer.start(cooldown)
+		get_node("Building").init(cooldown)
 
+func failed():
+	for key in dict_adjancent_building_positions.keys():
+		dict_adjancent_building_positions[key].failed()
+		
 
 func generate_sequence():
 	var max_sequence_number = 5
@@ -63,7 +69,7 @@ func generate_sequence():
 
 func label_position_gui():
 	var label = get_node("Spatial/Viewport/Label")
-	label.text = "%s: (%s, %s, %s)" % [_id, self.translation.x, self.translation.y, self.translation.z]
+	label.text = "%s" % [_id]
 
 
 func generate_adjacent_buiding():
@@ -98,6 +104,8 @@ func adjacent_coordinates(adjancent_building_position):
 func init(id, initial_position):
 	_id = id
 	self.translation = initial_position
+	label_position_gui()
+	
 
 
 func _on_Area_input_event(_camera, _event, _position, _normal, _shaperowx):
