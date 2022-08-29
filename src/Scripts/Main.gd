@@ -15,6 +15,14 @@ func main_building_coordidate(column, row):
 	add_child(resource)
 	resource.init("(%s,%s)" % [column, row], initial_position)
 	
+	
+	
+
+func _input(event):
+	if event.is_action_pressed("reset"):
+		var error = get_tree().reload_current_scene()
+		if error != OK:
+			print("Something went wrong")
 
 
 func _ready():
