@@ -3,6 +3,7 @@ tool
 
 var gui
 var _id = 0
+onready var cooldown = randi() % 9 + 1.0
 
 export(PackedScene) var adjacent_building
 var adjancent_building_positions = ["left", "right", "up", "bottom"]
@@ -12,6 +13,7 @@ var dict_adjancent_building_positions = {}
 var is_playing_sequence = false
 var current_sequence = []
 onready var timer = get_node("Timer")
+onready var time_label = get_node("Spatial/Viewport/Time")
 
 #TODO: pass this variable to a global scope
 var score = 0
@@ -21,11 +23,13 @@ func _ready():
 		var camera = get_parent().get_node("Pivot/Camera")
 		gui = get_node("GUI/Render")
 		gui.rotation = camera.rotation
-		label_position_gui()
+	label_position_gui()
 
 	generate_adjacent_buiding()
 	generate_sequence()
-	timer.start(randi() % 9)
+	print("cooldown of %s: %s" % [_id,cooldown])
+	timer.start(cooldown)
+	get_node("Building").init(cooldown)
 	
 
 func _on_adjacent_Click(adjancent_building_position_clicked):
@@ -33,7 +37,7 @@ func _on_adjacent_Click(adjancent_building_position_clicked):
 		validate_player_sequence(adjancent_building_position_clicked)
 
 func _on_Timer_timeout():
-	var i = 1
+	var i = 0.5
 	for key in dict_adjancent_building_positions.keys():
 		dict_adjancent_building_positions[key].timer.start(i)
 		i = i + 1
@@ -99,3 +103,6 @@ func init(id, initial_position):
 func _on_Area_input_event(_camera, _event, _position, _normal, _shaperowx):
 	pass
 	# emit_signal("click",_id)
+	
+func _process(_delta):
+	time_label.text = str(stepify(timer.time_left,0.01))

@@ -7,12 +7,16 @@ var _id = 0
 var fade_material
 var building
 onready var timer = get_node("Timer")
+onready var label_timer = get_node("Spatial/Viewport/Timer")
 
 func _ready():
 	building = get_node("Building")
 	fade_material = get_node("Fade")
 	label_position_gui()
 
+
+func _process(_delta):
+	label_timer.text = str(stepify(timer.time_left,0.01))
 
 func label_position_gui():
 	var label = get_node("Spatial/Viewport/Label")
