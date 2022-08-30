@@ -36,10 +36,9 @@ func _on_adjacent_Click(adjancent_building_position_clicked):
 
 
 func _on_Cooldown_timeout():
-	var i = 0.5
-	for key in dict_adjancent_building_positions.keys():
-		dict_adjancent_building_positions[key].timer.start(i)
-		i = i + 1
+	for key in current_sequence:
+		yield(get_tree().create_timer(1.0), "timeout")
+		dict_adjancent_building_positions[key].sequence_color()
 
 
 func validate_player_sequence(adjancent_building_position_clicked):
@@ -122,3 +121,5 @@ func _process(_delta):
 	time_label.text = str(stepify(timer.time_left,0.01))
 	if not current_sequence:
 		generate_sequence()
+		timer.start(cooldown)
+		get_node("Building").init(cooldown)
