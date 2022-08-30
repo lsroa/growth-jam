@@ -22,6 +22,7 @@ extents = Vector3( 1, 0.505519, 1 )
 script = ExtResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
 one_shot = true
 
 [node name="Spatial" type="Spatial" parent="."]

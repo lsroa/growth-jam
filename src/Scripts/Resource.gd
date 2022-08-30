@@ -45,7 +45,6 @@ func _on_Cooldown_timeout():
 func validate_player_sequence(adjancent_building_position_clicked):
 	var current_value_sequence
 
-	#TODO: It needs to be refactored to a function
 	if current_sequence:
 		current_value_sequence = current_sequence[0]
 

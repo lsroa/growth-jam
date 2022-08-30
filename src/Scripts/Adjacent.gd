@@ -37,7 +37,7 @@ func _on_StaticBody_input_event(_camera, event, _position, _normal, _shape_idx):
 func flash(color: Color):
 	var material:ShaderMaterial = building.get_active_material(0)
 	material.set_shader_param("color", color)
-	
+
 	fade_material.interpolate_property(
 		material, "shader_param/level", 1.0, 0.0, 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN
 	)
@@ -45,9 +45,12 @@ func flash(color: Color):
 
 func input():
 	flash(Color(0,1,0))
-	
+
+func sequence_color():
+	flash(Color(0,0,1))
+
 func failed():
 	flash(Color(1,0,0))
 
 func _on_Timer_timeout():
-	input()
+	sequence_color()
