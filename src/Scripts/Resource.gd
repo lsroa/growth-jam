@@ -3,7 +3,6 @@ tool
 
 var gui
 var _id = 0
-onready var cooldown = randi() % 9 + 3.0
 
 export(PackedScene) var adjacent_building
 var adjancent_building_positions = ["left", "right", "up", "bottom"]
@@ -18,14 +17,9 @@ onready var time_label = get_node("Spatial/Viewport/Time")
 #TODO: pass this variable to a global scope
 var score = 0
 
-func _ready():
-	if not Engine.editor_hint:
-		var camera = get_parent().get_node("Pivot/Camera")
-		gui = get_node("GUI/Render")
-		gui.rotation = camera.rotation
 
-	generate_adjacent_buiding()
-	generate_sequence()
+func restart_cooldown():
+	var cooldown = randi() % 9 + 3.0
 	timer.start(cooldown)
 	get_node("Building").init(cooldown)
 
@@ -52,8 +46,7 @@ func validate_player_sequence(adjancent_building_position_clicked):
 		#TODO: add score logic.
 	else:
 		failed()
-		timer.start(cooldown)
-		get_node("Building").init(cooldown)
+		restart_cooldown()
 
 
 func failed():
@@ -67,14 +60,6 @@ func generate_sequence():
 	for _i in range(0, random_len):
 		var random_index = rand_range(0,dict_adjancent_building_positions.keys().size())
 		current_sequence.append(dict_adjancent_building_positions.keys()[random_index])
-
-	print("self:", self, "current_sequence: ", current_sequence)
-
-
-
-func label_position_gui():
-	var label = get_node("Spatial/Viewport/Label")
-	label.text = "%s" % [_id]
 
 
 func generate_adjacent_buiding():
@@ -106,20 +91,29 @@ func adjacent_coordinates(adjancent_building_position):
 			return Vector3(self.translation.x, self.translation.y, self.translation.z + 2)
 
 
+func label_position_gui():
+	var label = get_node("Spatial/Viewport/Label")
+	label.text = "%s" % [_id]
+
+
 func init(id, initial_position):
 	_id = id
 	self.translation = initial_position
 	label_position_gui()
 
 
-func _on_Area_input_event(_camera, _event, _position, _normal, _shaperowx):
-	pass
-	# emit_signal("click",_id)
-
-
 func _process(_delta):
 	time_label.text = str(stepify(timer.time_left,0.01))
 	if not current_sequence:
 		generate_sequence()
-		timer.start(cooldown)
-		get_node("Building").init(cooldown)
+		restart_cooldown()
+
+func _ready():
+	if not Engine.editor_hint:
+		var camera = get_parent().get_node("Pivot/Camera")
+		gui = get_node("GUI/Render")
+		gui.rotation = camera.rotation
+
+	generate_adjacent_buiding()
+	generate_sequence()
+	restart_cooldown()
