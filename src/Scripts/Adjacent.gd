@@ -6,6 +6,8 @@ var gui
 var _id = 0
 var fade_material
 var building
+var can_click
+
 onready var timer = get_node("Timer")
 onready var label_timer = get_node("Spatial/Viewport/Timer")
 
@@ -29,9 +31,24 @@ func init(id, _initial_position):
 
 
 func _on_StaticBody_input_event(_camera, event, _position, _normal, _shape_idx):
-	if event is InputEventMouseButton and event.button_index == BUTTON_MASK_LEFT and event.pressed:
+	var conditions = (
+		event is InputEventMouseButton and
+		event.button_index == BUTTON_MASK_LEFT and
+		event.pressed and
+		can_click
+	)
+
+	if conditions:
 		input()
 		emit_signal("click", _id)
+
+
+func enable_click():
+	can_click = true
+
+
+func disable_click():
+	can_click = false
 
 
 func flash(color: Color):
