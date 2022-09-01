@@ -9,7 +9,7 @@
 
 [sub_resource type="ShaderMaterial" id=34]
 shader = ExtResource( 5 )
-shader_param/level = 1.01
+shader_param/level = 0.0435461
 shader_param/LOAD_COLOR = Color( 0, 1, 0, 1 )
 
 [sub_resource type="SphereMesh" id=35]
@@ -100,18 +100,18 @@ script = ExtResource( 2 )
 adjacent_building = ExtResource( 6 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 3.0
 one_shot = true
 
 [node name="Building" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 mesh = SubResource( 35 )
-material/0 = null
 script = ExtResource( 4 )
 mesh_pools = [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ]
 shader = ExtResource( 5 )
 
 [node name="Tween" type="Tween" parent="Building"]
+playback/active = true
 
 [node name="Spatial" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.55516, 0 )
@@ -130,7 +130,7 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
 custom_constants/shadow_offset_x = 0
-text = "0"
+text = "1.44"
 align = 1
 valign = 2
 
