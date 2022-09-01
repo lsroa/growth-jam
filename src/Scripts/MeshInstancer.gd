@@ -4,8 +4,7 @@ tool
 export(Array, Mesh) var mesh_pools
 export(Shader) var shader
 onready var load_material = get_node("Tween")
-onready var material =  ShaderMaterial.new()
-
+export(Array, Color) var colors
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,7 +16,8 @@ func _ready():
 
 func _assign_shader_to_material(mesh: Mesh):
 	for m in mesh.get_surface_count():
-		material.set_shader_param("LOAD_COLOR", Color(0, 1, 0))
+		var material = mesh.surface_get_material(m)
+		material.set_shader_param("LOAD_COLOR", colors[randi() % colors.size()])
 		material.shader = shader
 
 func init(cooldown):
