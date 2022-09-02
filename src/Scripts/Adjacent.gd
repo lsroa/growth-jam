@@ -31,14 +31,14 @@ func init(id, _initial_position):
 
 
 func _on_StaticBody_input_event(_camera, event, _position, _normal, _shape_idx):
-	var conditions = (
+	var can_left_clicked = (
 		event is InputEventMouseButton and
 		event.button_index == BUTTON_MASK_LEFT and
 		event.pressed and
 		can_click
 	)
 
-	if conditions:
+	if can_left_clicked:
 		input()
 		emit_signal("click", _id)
 
