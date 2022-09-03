@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/Scripts/Pivot.gd" type="Script" id=1]
 [ext_resource path="res://src/Scripts/Main.gd" type="Script" id=2]
@@ -6,7 +6,15 @@
 [ext_resource path="res://Start.png" type="Texture" id=4]
 [ext_resource path="res://src/Shaders/loading.shader" type="Shader" id=5]
 [ext_resource path="res://src/Scripts/Menu.gd" type="Script" id=6]
+<<<<<<< Updated upstream
 [ext_resource path="res://default_env.tres" type="Environment" id=7]
+=======
+[ext_resource path="res://src/Scripts/Score.gd" type="Script" id=7]
+
+[sub_resource type="Environment" id=4]
+dof_blur_far_distance = 18.45
+dof_blur_far_transition = 1.47
+>>>>>>> Stashed changes
 
 [sub_resource type="PlaneMesh" id=3]
 
@@ -74,8 +82,15 @@ shader = SubResource( 9 )
 [node name="Main" type="Spatial"]
 script = ExtResource( 2 )
 
+<<<<<<< Updated upstream
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 7 )
+=======
+[node name="Score" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+script = ExtResource( 7 )
+>>>>>>> Stashed changes
 
 [node name="Pivot" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 51 )
