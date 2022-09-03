@@ -161,6 +161,7 @@ shader = ExtResource( 5 )
 colors = [ Color( 0.984314, 0.337255, 0.027451, 1 ), Color( 1, 0.745098, 0.0431373, 1 ), Color( 0.937255, 0.278431, 0.435294, 1 ), Color( 0.227451, 0.52549, 1, 1 ), Color( 0.513726, 0.219608, 0.92549, 1 ), Color( 0.541176, 0.788235, 0.14902, 1 ) ]
 
 [node name="Tween" type="Tween" parent="Building"]
+playback/active = true
 
 [node name="Spatial" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.55516, 0 )
@@ -179,7 +180,7 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
 custom_constants/shadow_offset_x = 0
-text = "0"
+text = "1.44"
 align = 1
 valign = 2
 

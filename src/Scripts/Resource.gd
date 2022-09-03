@@ -6,11 +6,9 @@ var _id = 0
 
 export(PackedScene) var adjacent_building
 var adjancent_building_positions = ["left", "right", "up", "bottom"]
-
 var dict_adjancent_building_positions = {}
-
-var is_playing_sequence = false
 var current_sequence = []
+
 onready var timer = get_node("Timer")
 onready var time_label = get_node("Spatial/Viewport/Time")
 
@@ -18,6 +16,10 @@ var current_score_point
 
 #TODO: add player timer when start the game.
 # var time = 0
+var is_playing_sequence
+
+#TODO: pass this variable to a global scope
+var score = 0
 
 
 func restart_cooldown():
@@ -33,10 +35,23 @@ func _on_adjacent_Click(adjancent_building_position_clicked):
 
 func _on_Cooldown_timeout():
 	current_score_point = len(current_sequence)
+	disabled_click_child()
 
 	for key in current_sequence:
 		yield(get_tree().create_timer(1.0), "timeout")
 		dict_adjancent_building_positions[key].sequence_color()
+
+	enabled_click_child()
+
+
+func enabled_click_child():
+	for key in dict_adjancent_building_positions.keys():
+		dict_adjancent_building_positions[key].enable_click()
+
+
+func disabled_click_child():
+	for key in dict_adjancent_building_positions.keys():
+		dict_adjancent_building_positions[key].disable_click()
 
 
 func validate_player_sequence(adjancent_building_position_clicked):
