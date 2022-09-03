@@ -201,7 +201,7 @@ flip_v = true
 texture = SubResource( 21 )
 
 [node name="GUI" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.15177, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6722, 0 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true

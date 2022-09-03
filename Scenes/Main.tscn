@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/Scripts/Pivot.gd" type="Script" id=1]
 [ext_resource path="res://src/Scripts/Main.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://src/Shaders/loading.shader" type="Shader" id=5]
 [ext_resource path="res://src/Scripts/Menu.gd" type="Script" id=6]
 [ext_resource path="res://src/Scripts/Score.gd" type="Script" id=7]
+[ext_resource path="res://src/Scripts/Time.gd" type="Script" id=8]
 
 [sub_resource type="Theme" id=14]
 
@@ -79,13 +80,25 @@ script = ExtResource( 2 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 
 [node name="Score" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_left = 44.0
+margin_top = 29.0
+margin_right = 84.0
+margin_bottom = 43.0
 theme = SubResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 script = ExtResource( 7 )
+
+[node name="Time" type="Label" parent="."]
+margin_left = 919.0
+margin_top = 29.0
+margin_right = 959.0
+margin_bottom = 43.0
+custom_colors/font_color = Color( 0.0431373, 1, 0.0117647, 1 )
+custom_colors/font_outline_modulate = Color( 0.0431373, 1, 0.0117647, 1 )
+custom_colors/font_color_shadow = Color( 0.0431373, 1, 0.0117647, 1 )
+script = ExtResource( 8 )
 
 [node name="Pivot" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 51 )
