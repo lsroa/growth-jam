@@ -1,6 +1,9 @@
 extends Camera
 var zoom_factor = 1
-var zoom = 15.0
+
+export var min_zoom = 20.0
+export var max_zoom = 30.0
+onready var zoom = min_zoom
 
 
 func _input(event):
@@ -12,6 +15,6 @@ func _input(event):
 
 
 func _set_zoom(value):
-	zoom = clamp(value, 15.0, 30.0)
+	zoom = clamp(value, min_zoom, max_zoom)
 	self.size = zoom
 	

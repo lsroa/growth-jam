@@ -1,20 +1,20 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
-[ext_resource path="res://Assets/Images/icon.png" type="Texture" id=1]
+[ext_resource path="res://coin.png" type="Texture" id=1]
 [ext_resource path="res://src/Scripts/Resource.gd" type="Script" id=2]
-[ext_resource path="res://src/Shaders/flash.shader" type="Shader" id=3]
+[ext_resource path="res://src/Scripts/GUI.gd" type="Script" id=3]
 [ext_resource path="res://src/Scripts/MeshInstancer.gd" type="Script" id=4]
 [ext_resource path="res://src/Shaders/loading.shader" type="Shader" id=5]
 [ext_resource path="res://Scenes/AdjacentBuilding.tscn" type="PackedScene" id=6]
 
-[sub_resource type="ShaderMaterial" id=34]
+[sub_resource type="ShaderMaterial" id=39]
 shader = ExtResource( 5 )
 shader_param/level = 1.01
-shader_param/LOAD_COLOR = Color( 0, 1, 0, 1 )
+shader_param/LOAD_COLOR = Color( 0.937255, 0.278431, 0.435294, 1 )
 
-[sub_resource type="SphereMesh" id=35]
+[sub_resource type="PrismMesh" id=40]
 resource_local_to_scene = true
-material = SubResource( 34 )
+material = SubResource( 39 )
 
 [sub_resource type="Shader" id=29]
 resource_local_to_scene = true
@@ -85,43 +85,92 @@ material = SubResource( 33 )
 viewport_path = NodePath("Spatial/Viewport")
 
 [sub_resource type="QuadMesh" id=3]
+size = Vector2( 1.5, 1.5 )
 
-[sub_resource type="ShaderMaterial" id=6]
-shader = ExtResource( 3 )
-shader_param/color = Color( 0.815686, 0.290196, 0.290196, 1 )
-shader_param/level = 0.521
-shader_param/texture_albedo = ExtResource( 1 )
+[sub_resource type="VisualShaderNodeTexture" id=36]
+texture = ExtResource( 1 )
+
+[sub_resource type="VisualShaderNodeVectorOp" id=41]
+output_port_for_preview = 0
+default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 0.3, 0.3, 0.3 ) ]
+operator = 2
+
+[sub_resource type="VisualShader" id=37]
+code = "shader_type spatial;
+render_mode specular_schlick_ggx, async_visible;
+
+uniform sampler2D tex_frg_2;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Texture:2
+	vec4 tex_frg_2_read = texture(tex_frg_2, UV.xy);
+	vec3 n_out2p0 = tex_frg_2_read.rgb;
+	float n_out2p1 = tex_frg_2_read.a;
+
+// VectorOp:3
+	vec3 n_in3p1 = vec3(0.30000, 0.30000, 0.30000);
+	vec3 n_out3p0 = n_out2p0 * n_in3p1;
+
+// Output:0
+	ALBEDO = n_out2p0;
+	ALPHA = n_out2p1;
+	EMISSION = n_out3p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -281.582, -3.09744 )
+nodes/fragment/0/position = Vector2( 540, 80 )
+nodes/fragment/2/node = SubResource( 36 )
+nodes/fragment/2/position = Vector2( -240, 160 )
+nodes/fragment/3/node = SubResource( 41 )
+nodes/fragment/3/position = Vector2( 120, 100 )
+nodes/fragment/connections = PoolIntArray( 2, 1, 0, 1, 2, 0, 3, 0, 3, 0, 0, 5, 2, 0, 0, 0 )
+
+[sub_resource type="ShaderMaterial" id=38]
+shader = SubResource( 37 )
 
 [sub_resource type="BoxShape" id=9]
-extents = Vector3( 0.411397, 0.411014, 0.0439405 )
+extents = Vector3( 0.7, 0.7, 0.05 )
 
 [node name="Resource" type="Spatial"]
 script = ExtResource( 2 )
 adjacent_building = ExtResource( 6 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 9.0
 one_shot = true
 
 [node name="Building" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-mesh = SubResource( 35 )
-material/0 = null
+mesh = SubResource( 40 )
 script = ExtResource( 4 )
 mesh_pools = [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ]
 shader = ExtResource( 5 )
+colors = [ Color( 0.984314, 0.337255, 0.027451, 1 ), Color( 1, 0.745098, 0.0431373, 1 ), Color( 0.937255, 0.278431, 0.435294, 1 ), Color( 0.227451, 0.52549, 1, 1 ), Color( 0.513726, 0.219608, 0.92549, 1 ), Color( 0.541176, 0.788235, 0.14902, 1 ) ]
 
 [node name="Tween" type="Tween" parent="Building"]
 
 [node name="Spatial" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.55516, 0 )
+visible = false
 
 [node name="Viewport" type="Viewport" parent="Spatial"]
 size = Vector2( 152, 50 )
 transparent_bg = true
 
 [node name="Time" type="Label" parent="Spatial/Viewport"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 10 )
@@ -152,7 +201,8 @@ flip_v = true
 texture = SubResource( 21 )
 
 [node name="GUI" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.07669, 0 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -160,7 +210,7 @@ __meta__ = {
 [node name="Render" type="MeshInstance" parent="GUI"]
 mesh = SubResource( 3 )
 skeleton = NodePath("../..")
-material/0 = SubResource( 6 )
+material/0 = SubResource( 38 )
 
 [node name="Area" type="Area" parent="GUI"]
 
