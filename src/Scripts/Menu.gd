@@ -6,7 +6,7 @@ onready var pivot = get_parent().get_node("Pivot")
 onready var only_once = true
 
 
-func _process(delta):
+func _process(_delta):
 	if(is_on_hold):
 		level = level + 0.05
 		material.set_shader_param("level", level)
@@ -14,10 +14,8 @@ func _process(delta):
 		pivot.move_to_start()
 		only_once = false
 
-func remove():
-	get_parent().remove_child(self)
 
-func _on_Button_event(camera, event, position, normal, shape_idx):
+func _on_Button_event(_camera, event, _position, _normal, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == BUTTON_MASK_LEFT:
 		is_on_hold = event.pressed
 	
