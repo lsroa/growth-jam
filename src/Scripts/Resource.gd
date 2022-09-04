@@ -12,6 +12,10 @@ var current_sequence = []
 onready var timer = get_node("Timer")
 onready var time_label = get_node("Spatial/Viewport/Time")
 
+var current_score_point
+
+#TODO: add player timer when start the game.
+# var time = 0
 var is_playing_sequence
 
 #TODO: pass this variable to a global scope
@@ -30,6 +34,7 @@ func _on_adjacent_Click(adjancent_building_position_clicked):
 
 
 func _on_Cooldown_timeout():
+	current_score_point = len(current_sequence)
 	disabled_click_child()
 
 	for key in current_sequence:
@@ -57,10 +62,17 @@ func validate_player_sequence(adjancent_building_position_clicked):
 
 	if current_value_sequence == adjancent_building_position_clicked:
 		current_sequence.pop_front()
-		#TODO: add score logic.
+
+		if not current_sequence:
+			add_score_point()
+
 	else:
 		failed()
 		restart_cooldown()
+
+
+func add_score_point():
+	Global.score += current_score_point
 
 
 func failed():

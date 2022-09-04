@@ -7,14 +7,14 @@
 [ext_resource path="res://src/Shaders/loading.shader" type="Shader" id=5]
 [ext_resource path="res://Scenes/AdjacentBuilding.tscn" type="PackedScene" id=6]
 
-[sub_resource type="ShaderMaterial" id=39]
+[sub_resource type="ShaderMaterial" id=42]
 shader = ExtResource( 5 )
 shader_param/level = 1.01
-shader_param/LOAD_COLOR = Color( 0.937255, 0.278431, 0.435294, 1 )
+shader_param/LOAD_COLOR = Color( 0.984314, 0.337255, 0.027451, 1 )
 
-[sub_resource type="PrismMesh" id=40]
+[sub_resource type="PrismMesh" id=43]
 resource_local_to_scene = true
-material = SubResource( 39 )
+material = SubResource( 42 )
 
 [sub_resource type="Shader" id=29]
 resource_local_to_scene = true
@@ -149,12 +149,12 @@ script = ExtResource( 2 )
 adjacent_building = ExtResource( 6 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 9.0
+wait_time = 3.0
 one_shot = true
 
 [node name="Building" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-mesh = SubResource( 40 )
+mesh = SubResource( 43 )
 script = ExtResource( 4 )
 mesh_pools = [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ]
 shader = ExtResource( 5 )
@@ -202,7 +202,7 @@ flip_v = true
 texture = SubResource( 21 )
 
 [node name="GUI" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.07669, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6722, 0 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
