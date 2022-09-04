@@ -11,8 +11,8 @@
 
 [sub_resource type="ShaderMaterial" id=42]
 shader = ExtResource( 5 )
-shader_param/level = -0.854413
-shader_param/LOAD_COLOR = Color( 0.937255, 0.278431, 0.435294, 1 )
+shader_param/level = -0.636502
+shader_param/LOAD_COLOR = Color( 1, 0.745098, 0.0431373, 1 )
 
 [sub_resource type="CubeMesh" id=43]
 resource_local_to_scene = true
@@ -155,7 +155,7 @@ pause_mode = 1
 stream = ExtResource( 7 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 8.0
+wait_time = 11.0
 one_shot = true
 
 [node name="FailedSequence" type="AudioStreamPlayer" parent="."]
@@ -189,7 +189,7 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
 custom_constants/shadow_offset_x = 0
-text = "7.42"
+text = "9.01"
 align = 1
 valign = 2
 
@@ -211,7 +211,7 @@ flip_v = true
 texture = SubResource( 21 )
 
 [node name="GUI" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.36655, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.70295, 0 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
