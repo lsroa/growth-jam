@@ -12,10 +12,18 @@ var current_sequence = []
 onready var timer = get_node("Timer")
 onready var time_label = get_node("Spatial/Viewport/Time")
 
+# onready var ready_sound = get_node("MainBuildingReady")
+
 var is_playing_sequence
 
 #TODO: pass this variable to a global scope
 var score = 0
+
+
+func sound_effect(effect:AudioStreamPlayer, duration:float):
+	effect.play()
+	yield(get_tree().create_timer(duration), "timeout")
+	effect.stop()
 
 
 func restart_cooldown():
@@ -43,6 +51,8 @@ func enabled_click_child():
 	for key in dict_adjancent_building_positions.keys():
 		dict_adjancent_building_positions[key].enable_click()
 
+	sound_effect($MainBuildingReady, 0.15)
+
 
 func disabled_click_child():
 	for key in dict_adjancent_building_positions.keys():
@@ -66,6 +76,8 @@ func validate_player_sequence(adjancent_building_position_clicked):
 func failed():
 	for key in dict_adjancent_building_positions.keys():
 		dict_adjancent_building_positions[key].failed()
+
+	sound_effect($FailedSequence, 0.50)
 
 
 func generate_sequence():
