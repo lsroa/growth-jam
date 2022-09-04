@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/Scripts/Pivot.gd" type="Script" id=1]
 [ext_resource path="res://src/Scripts/Main.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/Scripts/Menu.gd" type="Script" id=6]
 [ext_resource path="res://src/Scripts/Score.gd" type="Script" id=7]
 [ext_resource path="res://Assets/Music/background-song.ogg" type="AudioStream" id=8]
+[ext_resource path="res://src/Scripts/Time.gd" type="Script" id=9]
 
 [sub_resource type="Theme" id=14]
 
@@ -98,7 +99,7 @@ margin_bottom = 43.0
 custom_colors/font_color = Color( 0.0431373, 1, 0.0117647, 1 )
 custom_colors/font_outline_modulate = Color( 0.0431373, 1, 0.0117647, 1 )
 custom_colors/font_color_shadow = Color( 0.0431373, 1, 0.0117647, 1 )
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 
 [node name="Pivot" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 51 )
