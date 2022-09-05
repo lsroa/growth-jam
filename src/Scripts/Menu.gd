@@ -5,8 +5,6 @@ var is_on_hold = false
 onready var pivot = get_parent().get_node("Pivot")
 onready var only_once = true
 
-var is_start = false
-
 
 func _process(delta):
 	if(is_on_hold):
@@ -15,9 +13,9 @@ func _process(delta):
 	if(level >= 1.0 and only_once):
 		pivot.move_to_start()
 		only_once = false
-		is_start = true
+		Global.is_playing = true
 
-	if is_start:
+	if Global.is_playing:
 		Global.start_timer(delta)
 
 

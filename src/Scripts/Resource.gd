@@ -14,12 +14,9 @@ onready var time_label = get_node("Spatial/Viewport/Time")
 
 var current_score_point
 
-#TODO: add player timer when start the game.
-# var time = 0
 var is_playing_sequence
 
-#TODO: pass this variable to a global scope
-var score = 0
+onready var pivot = get_parent().get_node("Pivot")
 
 
 func restart_cooldown():
@@ -73,6 +70,10 @@ func validate_player_sequence(adjancent_building_position_clicked):
 
 func add_score_point():
 	Global.score += current_score_point
+
+	if Global.score > 1:
+		pivot.move_to_end()
+		Global.stop_timer()
 
 
 func failed():
