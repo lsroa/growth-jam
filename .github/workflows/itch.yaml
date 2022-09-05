@@ -43,7 +43,7 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
           CHANNEL: web
-          ITCH_GAME: ${{ EXPORT_NAME }}
+          ITCH_GAME: ${{ env.EXPORT_NAME }}
           ITCH_USER: vheztial
           PACKAGE: ./${{ env.EXPORT_NAME }}/build/web
 
