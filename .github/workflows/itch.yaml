@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 env:
-  EXPORT_NAME: growfield
+  EXPORT_NAME: geomemotry
   GODOT_VERSION: 3.4.4
 
 jobs:
@@ -43,7 +43,7 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
           CHANNEL: web
-          ITCH_GAME: growfield
+          ITCH_GAME: ${{ EXPORT_NAME }}
           ITCH_USER: vheztial
           PACKAGE: ./${{ env.EXPORT_NAME }}/build/web
 
