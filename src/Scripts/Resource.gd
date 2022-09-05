@@ -71,7 +71,7 @@ func validate_player_sequence(adjancent_building_position_clicked):
 func add_score_point():
 	Global.score += current_score_point
 
-	if Global.score > 1:
+	if Global.score > Global.total_score:
 		pivot.move_to_end()
 		Global.stop_timer()
 
