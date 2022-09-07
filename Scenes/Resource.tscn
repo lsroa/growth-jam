@@ -10,9 +10,9 @@
 [sub_resource type="ShaderMaterial" id=42]
 shader = ExtResource( 5 )
 shader_param/level = 1.01
-shader_param/LOAD_COLOR = Color( 0.984314, 0.337255, 0.027451, 1 )
+shader_param/LOAD_COLOR = Color( 0.513726, 0.219608, 0.92549, 1 )
 
-[sub_resource type="PrismMesh" id=43]
+[sub_resource type="SphereMesh" id=43]
 resource_local_to_scene = true
 material = SubResource( 42 )
 
@@ -149,7 +149,7 @@ script = ExtResource( 2 )
 adjacent_building = ExtResource( 6 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 5.0
 one_shot = true
 
 [node name="Building" type="MeshInstance" parent="."]
@@ -161,7 +161,6 @@ shader = ExtResource( 5 )
 colors = [ Color( 0.984314, 0.337255, 0.027451, 1 ), Color( 1, 0.745098, 0.0431373, 1 ), Color( 0.937255, 0.278431, 0.435294, 1 ), Color( 0.227451, 0.52549, 1, 1 ), Color( 0.513726, 0.219608, 0.92549, 1 ), Color( 0.541176, 0.788235, 0.14902, 1 ) ]
 
 [node name="Tween" type="Tween" parent="Building"]
-playback/active = true
 
 [node name="Spatial" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.55516, 0 )
@@ -180,7 +179,7 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
 custom_constants/shadow_offset_x = 0
-text = "1.44"
+text = "0"
 align = 1
 valign = 2
 
@@ -202,7 +201,7 @@ flip_v = true
 texture = SubResource( 21 )
 
 [node name="GUI" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6722, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.38521, 0 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
