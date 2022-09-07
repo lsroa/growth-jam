@@ -13,14 +13,14 @@ func _process(delta):
 	if(level >= 1.0 and only_once):
 		pivot.move_to_start()
 		only_once = false
-		Global.is_playing = true
+		Game.is_playing = true
 
-	if Global.is_playing:
-		Global.start_timer(delta)
+	if Game.is_playing:
+		Game.start_timer(delta)
 
 
 func _on_Button_event(_camera, event, _position, _normal, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == BUTTON_MASK_LEFT:
 		is_on_hold = event.pressed
-		Global.restart_timer()
+		Game.restart_timer()
 

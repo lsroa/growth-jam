@@ -26,7 +26,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Global="*res://src/Scripts/Global.gd"
+Game="*res://src/Scripts/Game.gd"
 
 [gdnative]
 
