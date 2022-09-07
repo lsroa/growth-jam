@@ -16,11 +16,25 @@ func _input(event):
 		get_tree().reload_current_scene()
 		pivot.move_to_menu()
 		Global.is_playing = false
-		
+
+
+func random_positions_array():
+	var arr = []
+
+	for _i in range(0, 3):
+		var randon_num = int(rand_range(0, 9))
+		if not randon_num in arr:
+			arr.append(randon_num)
+
+	return arr
+
 
 func _ready():
 	randomize()
+	var remove_position_ids = random_positions_array()
 	for column in range(3):
 		for row in range(3):
-			if randf() > 0.5: 
+			var current_id = (column * 3) + row
+			if not current_id in remove_position_ids:
+				yield(get_tree().create_timer(1.0), "timeout")
 				main_building_coordidate(column, row)

@@ -111,9 +111,9 @@ func adjacent_coordinates(adjancent_building_position):
 		"bottom":
 			return Vector3(self.translation.x + 2, self.translation.y, self.translation.z)
 		"up":
-			return Vector3(self.translation.x - 2, self.translation.y, self.translation.z)
+			return Vector3(self.translation.x - 2.5, self.translation.y, self.translation.z)
 		"right":
-			return Vector3(self.translation.x - 0.5, self.translation.y, self.translation.z - 2)
+			return Vector3(self.translation.x, self.translation.y, self.translation.z - 2.5)
 		"left":
 			return Vector3(self.translation.x, self.translation.y, self.translation.z + 2)
 
