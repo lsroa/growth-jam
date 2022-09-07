@@ -2,6 +2,7 @@ extends Spatial
 tool
 
 export(int) var main_building_gap = 8
+onready var remove_total_building = 5
 onready var pivot = get_node("Pivot")
 
 func main_building_coordidate(column, row):
@@ -18,10 +19,10 @@ func _input(event):
 		Global.is_playing = false
 
 
-func random_positions_array():
+func random_positions_to_remove():
 	var arr = []
 
-	for _i in range(0, 3):
+	while len(arr) != remove_total_building:
 		var randon_num = int(rand_range(0, 9))
 		if not randon_num in arr:
 			arr.append(randon_num)
@@ -31,7 +32,7 @@ func random_positions_array():
 
 func _ready():
 	randomize()
-	var remove_position_ids = random_positions_array()
+	var remove_position_ids = random_positions_to_remove()
 	for column in range(3):
 		for row in range(3):
 			var current_id = (column * 3) + row
