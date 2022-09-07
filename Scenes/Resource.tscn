@@ -12,7 +12,7 @@
 [sub_resource type="ShaderMaterial" id=42]
 shader = ExtResource( 5 )
 shader_param/level = 1.01
-shader_param/LOAD_COLOR = Color( 1, 0.745098, 0.0431373, 1 )
+shader_param/LOAD_COLOR = Color( 0.984314, 0.337255, 0.027451, 1 )
 
 [sub_resource type="CubeMesh" id=43]
 resource_local_to_scene = true

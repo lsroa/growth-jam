@@ -23,6 +23,8 @@ var is_playing_sequence
 #TODO: pass this variable to a global scope
 var score = 0
 
+onready var main_building = $MainBuildingReady
+onready var failed_sequence = $FailedSequence
 
 func sound_effect(effect:AudioStreamPlayer, duration:float):
 	effect.play()
@@ -56,7 +58,7 @@ func enabled_click_child():
 	for key in dict_adjancent_building_positions.keys():
 		dict_adjancent_building_positions[key].enable_click()
 
-	sound_effect($MainBuildingReady, 0.15)
+	sound_effect(main_building, 0.15)
 
 
 func disabled_click_child():
@@ -89,7 +91,7 @@ func failed():
 	for key in dict_adjancent_building_positions.keys():
 		dict_adjancent_building_positions[key].failed()
 
-	sound_effect($FailedSequence, 0.50)
+	sound_effect(failed_sequence, 0.50)
 
 
 func generate_sequence():
