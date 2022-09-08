@@ -14,7 +14,7 @@ func main_building_coordidate(column, row):
 
 func _input(event):
 	if event.is_action_pressed("reset"):
-		get_tree().reload_current_scene()
+		var _ok = get_tree().reload_current_scene()
 		pivot.move_to_menu()
 		Game.is_playing = false
 

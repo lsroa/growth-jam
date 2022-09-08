@@ -18,6 +18,14 @@ var is_playing_sequence
 
 onready var pivot = get_parent().get_node("Pivot")
 
+onready var main_building = $MainBuildingReady
+onready var failed_sequence = $FailedSequence
+
+func sound_effect(effect:AudioStreamPlayer, duration:float):
+	effect.play()
+	yield(get_tree().create_timer(duration), "timeout")
+	effect.stop()
+
 
 func restart_cooldown():
 	var cooldown = randi() % 9 + 3.0
@@ -44,6 +52,8 @@ func _on_Cooldown_timeout():
 func enabled_click_child():
 	for key in dict_adjancent_building_positions.keys():
 		dict_adjancent_building_positions[key].enable_click()
+
+	sound_effect(main_building, 0.15)
 
 
 func disabled_click_child():
@@ -79,6 +89,8 @@ func add_score_point():
 func failed():
 	for key in dict_adjancent_building_positions.keys():
 		dict_adjancent_building_positions[key].failed()
+
+	sound_effect(failed_sequence, 0.50)
 
 
 func generate_sequence():
