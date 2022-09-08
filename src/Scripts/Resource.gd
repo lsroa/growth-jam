@@ -14,14 +14,9 @@ onready var time_label = get_node("Spatial/Viewport/Time")
 
 var current_score_point
 
-#TODO: add player timer when start the game.
-# var time = 0
-# onready var ready_sound = get_node("MainBuildingReady")
-
 var is_playing_sequence
 
-#TODO: pass this variable to a global scope
-var score = 0
+onready var pivot = get_parent().get_node("Pivot")
 
 onready var main_building = $MainBuildingReady
 onready var failed_sequence = $FailedSequence
@@ -84,7 +79,11 @@ func validate_player_sequence(adjancent_building_position_clicked):
 
 
 func add_score_point():
-	Global.score += current_score_point
+	Game.score += current_score_point
+
+	if Game.score > Game.total_score:
+		pivot.move_to_end()
+		Game.stop_timer()
 
 
 func failed():
@@ -124,9 +123,9 @@ func adjacent_coordinates(adjancent_building_position):
 		"bottom":
 			return Vector3(self.translation.x + 2, self.translation.y, self.translation.z)
 		"up":
-			return Vector3(self.translation.x - 2, self.translation.y, self.translation.z)
+			return Vector3(self.translation.x - 2.5, self.translation.y, self.translation.z)
 		"right":
-			return Vector3(self.translation.x - 0.5, self.translation.y, self.translation.z - 2)
+			return Vector3(self.translation.x, self.translation.y, self.translation.z - 2.5)
 		"left":
 			return Vector3(self.translation.x, self.translation.y, self.translation.z + 2)
 

@@ -20,3 +20,6 @@ func move_to_start():
 
 func move_to_menu():
 	_move_to(initial_position)
+
+func move_to_end():
+	_move_to(Vector3(50,0,-50))
