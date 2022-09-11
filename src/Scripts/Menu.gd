@@ -23,6 +23,7 @@ func _process(delta):
 func _on_Button_event(_camera, event, _position, _normal, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == BUTTON_MASK_LEFT:
 		is_on_hold = event.pressed
+		Game.restart_score()
 		Game.restart_timer()
 		music.volume_db = -20
 		music.play()
