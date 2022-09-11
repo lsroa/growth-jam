@@ -12,9 +12,9 @@
 [sub_resource type="ShaderMaterial" id=42]
 shader = ExtResource( 5 )
 shader_param/level = 1.01
-shader_param/LOAD_COLOR = Color( 0.513726, 0.219608, 0.92549, 1 )
+shader_param/LOAD_COLOR = Color( 0.937255, 0.278431, 0.435294, 1 )
 
-[sub_resource type="SphereMesh" id=43]
+[sub_resource type="CylinderMesh" id=43]
 resource_local_to_scene = true
 material = SubResource( 42 )
 
@@ -155,7 +155,7 @@ pause_mode = 1
 stream = ExtResource( 7 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 4.0
 one_shot = true
 
 [node name="FailedSequence" type="AudioStreamPlayer" parent="."]
@@ -210,7 +210,8 @@ flip_v = true
 texture = SubResource( 21 )
 
 [node name="GUI" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.38521, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.38959, 0 )
+visible = false
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true

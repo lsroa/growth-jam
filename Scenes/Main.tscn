@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/Scripts/Pivot.gd" type="Script" id=1]
 [ext_resource path="res://src/Scripts/Main.gd" type="Script" id=2]
@@ -9,8 +9,17 @@
 [ext_resource path="res://src/Scripts/Score.gd" type="Script" id=7]
 [ext_resource path="res://Assets/Music/background-song.ogg" type="AudioStream" id=8]
 [ext_resource path="res://src/Scripts/Time.gd" type="Script" id=9]
+[ext_resource path="res://Assets/Fonts/Inter-Regular.ttf" type="DynamicFontData" id=10]
 
 [sub_resource type="Theme" id=14]
+
+[sub_resource type="DynamicFont" id=16]
+size = 40
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=17]
+outline_color = Color( 0.211765, 0.207843, 0.207843, 1 )
+font_data = ExtResource( 10 )
 
 [sub_resource type="PlaneMesh" id=3]
 
@@ -86,9 +95,10 @@ margin_top = 29.0
 margin_right = 84.0
 margin_bottom = 43.0
 theme = SubResource( 14 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.243137, 0.235294, 0.235294, 1 )
+custom_colors/font_outline_modulate = Color( 0.243137, 0.235294, 0.235294, 1 )
+custom_colors/font_color_shadow = Color( 0.243137, 0.235294, 0.235294, 1 )
+custom_fonts/font = SubResource( 16 )
 script = ExtResource( 7 )
 
 [node name="Time" type="Label" parent="."]
@@ -96,9 +106,10 @@ margin_left = 919.0
 margin_top = 29.0
 margin_right = 959.0
 margin_bottom = 43.0
-custom_colors/font_color = Color( 0.0431373, 1, 0.0117647, 1 )
-custom_colors/font_outline_modulate = Color( 0.0431373, 1, 0.0117647, 1 )
-custom_colors/font_color_shadow = Color( 0.0431373, 1, 0.0117647, 1 )
+custom_colors/font_color = Color( 0.243137, 0.235294, 0.235294, 1 )
+custom_colors/font_outline_modulate = Color( 0.243137, 0.235294, 0.235294, 1 )
+custom_colors/font_color_shadow = Color( 0.243137, 0.235294, 0.235294, 1 )
+custom_fonts/font = SubResource( 17 )
 script = ExtResource( 9 )
 
 [node name="Pivot" type="Spatial" parent="."]
