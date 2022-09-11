@@ -53,7 +53,6 @@ func enabled_click_child():
 	for key in dict_adjancent_building_positions.keys():
 		dict_adjancent_building_positions[key].enable_click()
 
-	sound_effect(main_building, 0.15)
 
 
 func disabled_click_child():
@@ -71,6 +70,7 @@ func validate_player_sequence(adjancent_building_position_clicked):
 		current_sequence.pop_front()
 
 		if not current_sequence:
+			sound_effect(main_building, 0.15)
 			add_score_point()
 
 	else:
@@ -81,7 +81,7 @@ func validate_player_sequence(adjancent_building_position_clicked):
 func add_score_point():
 	Game.score += current_score_point
 
-	if Game.score > Game.total_score:
+	if Game.score >= Game.total_score:
 		pivot.move_to_end()
 		Game.stop_timer()
 

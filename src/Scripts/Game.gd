@@ -1,7 +1,7 @@
 extends Node
 
 var score = 0
-var total_score = 10
+var total_score = 25
 
 var time = 0
 var is_playing
