@@ -1,15 +1,17 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://src/Scripts/Pivot.gd" type="Script" id=1]
 [ext_resource path="res://src/Scripts/Main.gd" type="Script" id=2]
 [ext_resource path="res://src/Scripts/Camera.gd" type="Script" id=3]
-[ext_resource path="res://Start.png" type="Texture" id=4]
+[ext_resource path="res://thank-for-play.png" type="Texture" id=4]
 [ext_resource path="res://src/Shaders/loading.shader" type="Shader" id=5]
 [ext_resource path="res://src/Scripts/Menu.gd" type="Script" id=6]
 [ext_resource path="res://src/Scripts/Score.gd" type="Script" id=7]
 [ext_resource path="res://Assets/Music/background-song.ogg" type="AudioStream" id=8]
 [ext_resource path="res://src/Scripts/Time.gd" type="Script" id=9]
 [ext_resource path="res://Assets/Fonts/Inter-Regular.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://default_env.tres" type="Environment" id=11]
+[ext_resource path="res://Start.png" type="Texture" id=12]
 
 [sub_resource type="Theme" id=14]
 
@@ -35,7 +37,7 @@ shader_param/LOAD_COLOR = Color( 0.184314, 0.862745, 0.466667, 1 )
 [sub_resource type="PlaneMesh" id=6]
 
 [sub_resource type="VisualShaderNodeTexture" id=7]
-texture = ExtResource( 4 )
+texture = ExtResource( 12 )
 
 [sub_resource type="VisualShaderNodeVectorOp" id=8]
 default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 0.2, 0.3, 0.3 ) ]
@@ -74,7 +76,7 @@ void light() {
 
 }
 "
-graph_offset = Vector2( -98.4794, 79.9684 )
+graph_offset = Vector2( -266.228, 84.1482 )
 nodes/fragment/2/node = SubResource( 7 )
 nodes/fragment/2/position = Vector2( -100, 140 )
 nodes/fragment/3/node = SubResource( 8 )
@@ -84,10 +86,61 @@ nodes/fragment/connections = PoolIntArray( 2, 1, 0, 1, 3, 0, 0, 0, 2, 0, 3, 0 )
 [sub_resource type="ShaderMaterial" id=10]
 shader = SubResource( 9 )
 
+[sub_resource type="VisualShaderNodeTexture" id=18]
+texture = ExtResource( 4 )
+
+[sub_resource type="VisualShaderNodeVectorOp" id=19]
+default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 0.2, 0.3, 0.3 ) ]
+
+[sub_resource type="VisualShader" id=20]
+code = "shader_type spatial;
+render_mode specular_schlick_ggx, async_visible;
+
+uniform sampler2D tex_frg_2;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Texture:2
+	vec4 tex_frg_2_read = texture(tex_frg_2, UV.xy);
+	vec3 n_out2p0 = tex_frg_2_read.rgb;
+	float n_out2p1 = tex_frg_2_read.a;
+
+// VectorOp:3
+	vec3 n_in3p1 = vec3(0.20000, 0.30000, 0.30000);
+	vec3 n_out3p0 = n_out2p0 + n_in3p1;
+
+// Output:0
+	ALBEDO = n_out3p0;
+	ALPHA = n_out2p1;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -266.228, 84.1482 )
+nodes/fragment/2/node = SubResource( 18 )
+nodes/fragment/2/position = Vector2( -67.2283, 238.148 )
+nodes/fragment/3/node = SubResource( 19 )
+nodes/fragment/3/position = Vector2( 180, 140 )
+nodes/fragment/connections = PoolIntArray( 2, 1, 0, 1, 2, 0, 3, 0, 3, 0, 0, 0 )
+
+[sub_resource type="ShaderMaterial" id=21]
+shader = SubResource( 20 )
+
 [node name="Main" type="Spatial"]
 script = ExtResource( 2 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 11 )
 
 [node name="Score" type="Label" parent="."]
 margin_left = 44.0
@@ -156,6 +209,11 @@ transform = Transform( -1.31134e-07, 0, 1, 0, 1, 0, -3, 0, -4.37114e-08, -9, 0.9
 mesh = SubResource( 6 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 10 )
+
+[node name="ThankForPlay" type="MeshInstance" parent="Menu"]
+transform = Transform( -5.68248e-07, 0, 3, 0, 1, 0, -13, 0, -1.31134e-07, 50, 0, -50 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 21 )
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
