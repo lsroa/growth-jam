@@ -211,7 +211,7 @@ skeleton = NodePath("../..")
 material/0 = SubResource( 10 )
 
 [node name="ThankForPlay" type="MeshInstance" parent="Menu"]
-transform = Transform( -5.68248e-07, 0, 3, 0, 1, 0, -13, 0, -1.31134e-07, 50, 0, -50 )
+transform = Transform( 0, 0, 3, 0, 1, 0, -13, 0, 0, 50, 1, -50 )
 mesh = SubResource( 6 )
 material/0 = SubResource( 21 )
 
